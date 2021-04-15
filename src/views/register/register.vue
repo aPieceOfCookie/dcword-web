@@ -1,13 +1,13 @@
 <template>
   <el-form  ref="form" :model="user" label-width="80px">
-    <el-form-item label="活动名称">
-      <el-input v-model="user.name"></el-input>
+    <el-form-item label="用户名">
+      <el-input v-model="user.username"></el-input>
     </el-form-item>
-    <el-form-item label="活动名称">
-      <el-input v-model="user.name"></el-input>
+    <el-form-item label="密码">
+      <el-input v-model="user.password"></el-input>
     </el-form-item>
-    <el-form-item label="活动名称">
-      <el-input v-model="user.name"></el-input>
+    <el-form-item label="确认密码">
+      <el-input v-model="user.againPassword"></el-input>
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="regist">立即创建</el-button>
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import {postRequest} from "@/utils/api";
+import { postRequest } from "@/utils/api";
 
 export default {
   name: "register",

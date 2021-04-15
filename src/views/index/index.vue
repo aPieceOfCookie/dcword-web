@@ -58,10 +58,9 @@
 
 <script>
 export default {
-name: "index"
+  name: "index",
 };
 </script>
-
 
 <style>
 .el-header,
@@ -73,14 +72,14 @@ name: "index"
 }
 
 .el-aside {
-  background-color: #D3DCE6;
+  background-color: #d3dce6;
   color: #333;
   text-align: center;
   line-height: 200px;
 }
 
 .el-main {
-  background-color: #E9EEF3;
+  background-color: #e9eef3;
   color: #333;
   text-align: center;
   line-height: 160px;

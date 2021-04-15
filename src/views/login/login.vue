@@ -17,8 +17,8 @@
         ></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click.stop="onSubmit">登录</el-button>
-        <el-button>取消</el-button>
+        <el-button type="primary" @click.stop="onSubmit" round>登录</el-button>
+        <el-button type="primary" @click.stop="onRegist" round>注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -26,29 +26,34 @@
 
 <script>
 import { ref } from "vue";
-import {getRequest} from "@/utils/api";
+import { getRequest } from "@/utils/api";
+import { useRouter } from "vue-router";
 //import { ElMessage } from 'element-plus';
 export default {
   name: "login",
   setup: function () {
+    const router = useRouter();
     const loginFormRef = ref(null);
     const rules = {
-      userAccount: [
-        { required: true, message: "请输入帐号", trigger: "blur" },
-      ],
+      userAccount: [{ required: true, message: "请输入帐号", trigger: "blur" }],
       userPassword:[
         { required: true, message: "请输入密码", trigger: "blur" },
       ],
     };
     const onSubmit = function () {
-      getRequest("admin/user/login",{}).then((res)=>{
+      getRequest("admin/user/login", {}).then((res) => {
         console.log(res)
       });
+    };
+    //到注册页面
+    const onRegist = function (){
+      router.push("/register");
     };
     return {
       onSubmit,
       loginFormRef,
       rules,
+      onRegist,
       username: ref(""),
       password: ref(""),
     };
