@@ -43,9 +43,9 @@ export default {
           required:true,message: "请输入密码",
       ]
     };*/
-    let regist=()=>{
-      postRequest("/admin/regist",user).then((res)=>{
-        if(res.code==200){
+    let regist = function(){
+      postRequest("/admin/regist", user).then((res) => {
+        if (res.code == 200) {
           router.push("/index")
         }
       })
