@@ -18,10 +18,11 @@
 
 <script>
 import { postRequest } from "@/utils/api";
-
+import { useRouter } from "vue-router";
 export default {
   name: "register",
   setup: function () {
+    const router=useRouter();
     let user = {
       username: "",
       password: "",
@@ -44,7 +45,9 @@ export default {
     };*/
     let regist=()=>{
       postRequest("/admin/regist",user).then((res)=>{
-        console.log(res)
+        if(res.code==200){
+          router.push("/index")
+        }
       })
     }
     return {
