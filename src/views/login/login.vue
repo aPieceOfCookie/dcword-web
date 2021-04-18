@@ -1,16 +1,18 @@
 <template>
   <div>
-    <el-form :rules="rules" ref="loginForm" class="loginContainer">
+    <el-form
+      :rules="rules"
+      :model="user"
+      ref="loginForm"
+      class="loginContainer"
+    >
       <h3 class="loginTitle">系统登录</h3>
-      <el-form-item label="帐号" prop="userAccount">
-        <el-input
-          placeholder="请输入帐号"
-          v-model="username"
-        ></el-input>
+      <el-form-item label="帐号" prop="username">
+        <el-input placeholder="请输入帐号" v-model="user.username"></el-input>
       </el-form-item>
-      <el-form-item label="密码" prop="userPassword">
+      <el-form-item label="密码" prop="password">
         <el-input
-          v-model="password"
+          v-model="user.password"
           auto-complete="false"
           placeholder="请输入密码"
           show-password
@@ -25,7 +27,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { getRequest } from "@/utils/api";
 import { useRouter } from "vue-router";
 //import { ElMessage } from 'element-plus';
@@ -35,14 +37,16 @@ export default {
     const router = useRouter();
     const loginFormRef = ref(null);
     const rules = {
-      userAccount: [{ required: true, message: "请输入帐号", trigger: "blur" }],
-      userPassword:[
-        { required: true, message: "请输入密码", trigger: "blur" },
-      ],
+      username: [{ required: true, message: "请输入帐号", trigger: "blur" }],
+      password:[{ required: true, message: "请输入密码", trigger: "blur" }],
     };
+    let user = reactive({
+      username: "",
+      password: "",
+    });
     const onSubmit = function () {
       getRequest("admin/user/login", {}).then((res) => {
-        console.log(res)
+        console.log(res);
       });
     };
     //到注册页面
@@ -53,9 +57,8 @@ export default {
       onSubmit,
       loginFormRef,
       rules,
+      user,
       onRegist,
-      username: ref(""),
-      password: ref(""),
     };
   },
 };

@@ -1,12 +1,12 @@
 <template>
-  <el-form  ref="form" :model="user" label-width="80px">
-    <el-form-item label="用户名">
-      <el-input v-model="user.username"></el-input>
+  <el-form :rules="rules" ref="userForm" :model="user" label-width="80px">
+    <el-form-item label="用户名" prop="username">
+      <el-input v-model="user.username" autocomplete="off"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
-      <el-input v-model="user.password"></el-input>
+    <el-form-item label="密码" prop="password">
+      <el-input v-model="user.password" autocomplete="off"></el-input>
     </el-form-item>
-    <el-form-item label="确认密码">
+    <el-form-item label="确认密码" ref="pa" prop="againPassword">
       <el-input v-model="user.againPassword"></el-input>
     </el-form-item>
     <el-form-item>
@@ -19,41 +19,60 @@
 <script>
 import { postRequest } from "@/utils/api";
 import { useRouter } from "vue-router";
+import { ref, reactive } from "vue";
 export default {
   name: "register",
   setup: function () {
-    const router=useRouter();
-    let user = {
+    const userForm = ref(null);
+    const pa=ref(null);
+    const router = useRouter();
+    let user = reactive({
       username: "",
       password: "",
       againPassword: "",
-    };
-    var validatePass = (rule, value, callback) => {
-      if (value === '') {
-        callback(new Error('请输入密码'));
+    });
+    const validatePass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("请输入密码"));
       } else {
-        if (rule.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass');
+        if (user.password != "") {
+          console.log(1)
+          pa;
+          //this.$refs.userForm.validateField("againPassword");
         }
         callback();
       }
     };
-    /*let rule={
-      password: [
-          required:true,message: "请输入密码",
-      ]
-    };*/
-    let regist = function(){
-      postRequest("/admin/regist", user).then((res) => {
-        if (res.code == 200) {
-          router.push("/index")
+    const validateAgainPass = (rule, value, callback) => {
+      if (value === "") {
+        callback(new Error("密码"));
+      } else {
+        if (value != user.password) {
+          callback(new Error("两次密码输入不一致，请确认！"));
         }
-      })
-    }
+        callback();
+      }
+    };
+    let rules = {
+      password: [{ validator: validatePass, trigger: "blur" }],
+      username: [{ required: true, message: "请输入帐号", trigger: "blur" }],
+      againPassword: [{ validator: validateAgainPass, trigger: "blur" }],
+    };
+    let regist = function () {
+      postRequest("/admin/register", user).then((res) => {
+        console.log(res);
+        if (res.code == 200) {
+          router.push("/");
+        }
+      });
+    };
     return {
+      userForm,
       user,
       regist,
       validatePass,
+      rules,
+      pa,
     };
   },
 };
