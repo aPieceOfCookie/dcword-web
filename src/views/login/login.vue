@@ -28,9 +28,9 @@
 
 <script>
 import { ref, reactive } from "vue";
-import { getRequest } from "@/utils/api";
+import { postRequest } from "@/utils/api";
 import { useRouter } from "vue-router";
-//import { ElMessage } from 'element-plus';
+import { ElMessage } from "element-plus";
 export default {
   name: "login",
   setup: function () {
@@ -38,19 +38,23 @@ export default {
     const loginFormRef = ref(null);
     const rules = {
       username: [{ required: true, message: "请输入帐号", trigger: "blur" }],
-      password:[{ required: true, message: "请输入密码", trigger: "blur" }],
+      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
     };
     let user = reactive({
       username: "",
       password: "",
     });
     const onSubmit = function () {
-      getRequest("admin/user/login", {}).then((res) => {
-        console.log(res);
+      postRequest("/admin/login", user).then((res) => {
+        if (res.code == 200) {
+          router.push("/index");
+        } else {
+          ElMessage.error("用户名或密码错误");
+        }
       });
     };
     //到注册页面
-    const onRegist = function (){
+    const onRegist = function () {
       router.push("/register");
     };
     return {

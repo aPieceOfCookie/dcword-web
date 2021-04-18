@@ -37,7 +37,7 @@ export default {
       } else {
         if (user.password != "") {
           console.log(1)
-          pa;
+          //pa;
           //this.$refs.userForm.validateField("againPassword");
         }
         callback();
