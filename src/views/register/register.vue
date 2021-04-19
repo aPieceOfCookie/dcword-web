@@ -60,7 +60,6 @@ export default {
     };
     let regist = function () {
       postRequest("/admin/register", user).then((res) => {
-        console.log(res);
         if (res.code == 200) {
           router.push("/");
         }

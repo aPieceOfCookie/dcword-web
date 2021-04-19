@@ -20,6 +20,16 @@ const routes = [
     path: "/index",
     name: "主页",
     component: () => import("../views/index/index.vue")
+  },
+  {
+    path: "/badCompany",
+    name: "垃圾企业排行榜",
+    component: () => import("../views/badCompany/badCompany.vue")
+  },
+  {
+    path: "/excellentCompany",
+    name: "优秀企业排行榜",
+    component: () => import("../views/excellentCompany/excellentCompany.vue")
   }
 ];
 
