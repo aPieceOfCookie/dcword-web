@@ -3,21 +3,26 @@
 </template>
 
 <script>
-import { onMounted, reactive } from 'vue'
+import { onMounted, reactive } from 'vue';
+import { getRequest } from "@/utils/api";
 export default {
   setup(){
     let logData=reactive({
       logList: null
     })
     onMounted({
-      getRequest("/log/getUserLogList",{}).then((res)=>{
+      loadData()
+    });
+    let loadData= function(){
+      getRequest( "/log/getUserLogList",{}).then((res)=>{
         if(res.code==200){
           logData.logList=res.data;
         }
       })
-    });
+    }
     return{
       logData,
+      loadData,
     }
   }
 }
