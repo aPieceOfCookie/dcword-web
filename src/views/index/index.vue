@@ -3,7 +3,7 @@
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
       <el-menu v-for="menu in menuList.menuData" :key="menu">
         <el-submenu :index="menu.grade + ''">
-          <template #title v-if="menu.grade == 1">
+          <template #title>
             <i
               :class="menu.iconImg == null ? 'el-icon-warning' : menu.iconImg"
             />
@@ -13,7 +13,7 @@
             <el-menu-item
               v-if="item.grade == 2"
               :index="menu.sn + '-' + item.sn"
-              @click.stop="toDirect(item.route)"
+              v-on:click="toDirect(item.route)"
             >
               {{ item.menuName }}
             </el-menu-item>
@@ -55,6 +55,8 @@
 import { onMounted, reactive } from "vue";
 import { getRequest } from "@/utils/api";
 import { useRouter } from "vue-router";
+import { ElMessage } from "element-plus";
+import { valueIsNull1 } from "@/utils/validate";
 export default {
   name: "index",
   setup() {
@@ -70,7 +72,11 @@ export default {
       });
     });
     let toDirect = function (route) {
-      router.push(route);
+      if (valueIsNull1(route)) {
+        router.push(route);
+      } else {
+        ElMessage.error("路由错误");
+      }
     };
     return {
       menuList,
