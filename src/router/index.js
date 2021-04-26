@@ -19,7 +19,14 @@ const routes = [
   {
     path: "/index",
     name: "主页",
-    component: () => import("../views/index/index.vue")
+    component: () => import("../views/index/index.vue"),
+    children:[
+      {
+        path: "/userLog",
+        name: "登录日志",
+        component: () => import("../views/userLog/userLog.vue")
+      }
+    ]
   },
   {
     path: "/badCompany",
