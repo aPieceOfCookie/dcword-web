@@ -1,5 +1,5 @@
 <template>
-  <el-header style="text-align: right; font-size: 12px">
+  <el-header>
     <el-dropdown>
       <i class="el-icon-setting" style="margin-right: 15px"></i>
       <template #dropdown>

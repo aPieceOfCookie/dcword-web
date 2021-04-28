@@ -1,8 +1,10 @@
 <template>
   <el-container style="height: 500px; border: 1px solid #eee">
-    <aside-view />
+    <aside-view  />
     <el-container>
+      <el-header style="text-align: right; font-size: 12px">
       <head-view />
+      </el-header>
       <el-main>
         <router-view />
       </el-main>

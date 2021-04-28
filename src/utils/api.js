@@ -2,7 +2,7 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import router from "../router";
 
-/*axios.interceptors.request.use(config=>{
+axios.interceptors.request.use(config=>{
     //token
     if (window.sessionStorage.getItem("token")) {
       config.headers[
@@ -13,7 +13,7 @@ import router from "../router";
   },
   (error) => {
     console.log(error);
-});*/
+});
 //interceptors拦截器
 axios.interceptors.response.use(
   (success) => {
@@ -89,11 +89,14 @@ export const getRequest = (url, params) => {
 };
 
 export const delRequest = (url, params) => {
-  return axios({
-    method: "get",
-    url: url,
-    data: params,
-  });
+  console.log(params)
+  
+  return axios.delete(url + "?" + JSON.stringify(params));
+  // return axios({
+  //   method: "get",
+  //   url: url,
+  //   data: params,
+  // });
 };
 
 export const putRequest = (url, params) => {
