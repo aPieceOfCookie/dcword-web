@@ -89,8 +89,6 @@ export const getRequest = (url, params) => {
 };
 
 export const delRequest = (url, params) => {
-  console.log(params)
-  
   return axios.delete(url + "?" + JSON.stringify(params));
   // return axios({
   //   method: "get",

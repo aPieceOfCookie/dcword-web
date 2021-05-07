@@ -25,18 +25,24 @@ const routes = [
         path: "/userLog",
         name: "登录日志",
         component: () => import("../views/userLog/userLog.vue")
+      },
+      {
+        path: "/badCompany",
+        name: "垃圾企业排行榜",
+        component: () => import("../views/badCompany/badCompany.vue")
+      },
+      {
+        path: "/excellentCompany",
+        name: "优秀企业排行榜",
+        component: () =>
+          import("../views/excellentCompany/excellentCompany.vue"),
+      },
+      {
+        path: "/companyManage",
+        name: "企业管理",
+        component: () => import("../views/companyManage/companyManage.vue")
       }
     ]
-  },
-  {
-    path: "/badCompany",
-    name: "垃圾企业排行榜",
-    component: () => import("../views/badCompany/badCompany.vue")
-  },
-  {
-    path: "/excellentCompany",
-    name: "优秀企业排行榜",
-    component: () => import("../views/excellentCompany/excellentCompany.vue")
   }
 ];
 
