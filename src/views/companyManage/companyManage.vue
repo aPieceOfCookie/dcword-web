@@ -28,22 +28,18 @@
   </el-table>
 
   <el-dialog title="新增" v-model="baseData.dialogVisible" width="40%">
-    <el-form ref="company" :model="baseData.company" label-width="80px">
-      <el-form-item>
+    <el-form :rules="baseData.fromRules" ref="company" :model="baseData.company" label-width="80px">
+      <el-form-item label="企业名称" prop="companyName">
         <el-input v-model="baseData.company.companyName"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-input v-model="baseData.company.companyName"></el-input>
+      </el-form-item> 
+      <el-form-item label="企业地址" prop="address">
+        <el-input v-model="baseData.company.address"></el-input>
       </el-form-item>
     </el-form>
     <template #footer>
       <span class="dialog-footer">
-        <el-button size="mini" @click="baseData.dialogVisible = false"
-          >取 消</el-button
-        >
-        <el-button size="mini" type="primary" @click="saveCompany"
-          >保存</el-button
-        >
+        <el-button size="mini" @click="baseData.dialogVisible = false">取 消</el-button>
+        <el-button size="mini" type="primary" @click="saveCompany">保存</el-button>
       </span>
     </template>
   </el-dialog>
@@ -61,6 +57,10 @@ export default {
         companyName: "",
         address: ""
       },
+      fromRules:{
+        companyName: [ { required: true, message: '请输入企业名称', trigger: 'blur' }],
+        address: [  { required: true, message: '请输入企业地址', trigger: 'blur' } ]
+      }
     });
     let loadData = () => {
       getRequest("company/getAll", {}).then((res) => {
@@ -72,8 +72,8 @@ export default {
     onMounted(() => {
       loadData();
     });
-    let removeInfo = (logId) => {
-      delRequest("/userLog/delOne", { logId: logId });
+    let removeInfo = (companyId) => {
+      delRequest("/company/delOne", { companyId: companyId });
     };
     let saveCompany = function (){
       let params = baseData.company;
