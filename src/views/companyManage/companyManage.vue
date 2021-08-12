@@ -35,6 +35,7 @@
       <el-form-item label="企业地址" prop="address">
         <el-input v-model="baseData.company.address"></el-input>
       </el-form-item>
+
     </el-form>
     <template #footer>
       <span class="dialog-footer">
@@ -47,7 +48,8 @@
 
 <script>
 import { reactive, onMounted } from "vue";
-import { getRequest, delRequest, postRequest } from "@/utils/api";
+import { getRequest, postRequest, delRequest } from "@/utils/api";
+import { ElMessageBox } from "element-plus";
 export default {
   setup() {
     let baseData = reactive({
@@ -72,9 +74,19 @@ export default {
     onMounted(() => {
       loadData();
     });
+    //删除
     let removeInfo = (companyId) => {
-      delRequest("/company/delOne", { companyId: companyId });
+      ElMessageBox.confirm("是否删除该信息?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+      })
+        .then(() => {
+          delRequest("/company/delOne/" + companyId);
+          loadData();
+        })
+        .catch(() => {});
     };
+    //保存
     let saveCompany = function (){
       let params = baseData.company;
       postRequest("/company/saveCompany", params).then((res) => {

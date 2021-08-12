@@ -41,7 +41,7 @@ export default {
       loadData();
     });
     let removeInfo = (logId) => {
-      delRequest("/userLog/delOne", { logId: logId  });
+      delRequest("/userLog/delOne/" + logId);
     };
     return {
       baseData,

@@ -88,13 +88,8 @@ export const getRequest = (url, params) => {
   });
 };
 
-export const delRequest = (url, params) => {
-  return axios.delete(url + "?" + JSON.stringify(params));
-  // return axios({
-  //   method: "get",
-  //   url: url,
-  //   data: params,
-  // });
+export const delRequest = (url) => {
+  return axios.delete(url);
 };
 
 export const putRequest = (url, params) => {
