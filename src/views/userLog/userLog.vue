@@ -6,7 +6,8 @@
       label="日期"
       width="180"
     />
-    <el-table-column prop="ip" label="姓名" width="180"> </el-table-column>
+    <el-table-column prop="" label="姓名" width="180"> </el-table-column>
+    <el-table-column prop="ip" label="ip"> </el-table-column>
     <el-table-column prop="address" label="地址"> </el-table-column>
     <el-table-column label="操作">
       <template v-slot="{ row }">

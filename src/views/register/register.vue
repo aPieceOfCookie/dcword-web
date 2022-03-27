@@ -24,7 +24,7 @@ export default {
   name: "register",
   setup: function () {
     const userForm = ref(null);
-    const pa=ref(null);
+    const pa = ref(null);
     const router = useRouter();
     let user = reactive({
       username: "",
@@ -36,7 +36,7 @@ export default {
         callback(new Error("请输入密码"));
       } else {
         if (user.password != "") {
-          console.log(1)
+          console.log(1);
           //pa;
           //this.$refs.userForm.validateField("againPassword");
         }

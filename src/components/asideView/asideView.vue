@@ -7,7 +7,7 @@
           {{ menu.menuName }}
         </template>
         <el-menu-item-group v-for="item in menu.childList" :key="item">
-          <el-menu-item v-if="item.grade == 2" :index="item.route"> 
+          <el-menu-item v-if="item.grade == 2" :index="item.route">
             {{ item.menuName }}
           </el-menu-item>
           <!-- <el-menu-item v-if="item.grade==3" :index="menu.grade+'-'+ item.grade + '-' + item.sn "> {{ item.menuName }} </el-menu-item> -->

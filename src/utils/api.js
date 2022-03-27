@@ -2,7 +2,8 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import router from "../router";
 
-axios.interceptors.request.use(config=>{
+axios.interceptors.request.use(
+  (config) => {
     //token
     if (window.sessionStorage.getItem("token")) {
       config.headers[
@@ -13,7 +14,8 @@ axios.interceptors.request.use(config=>{
   },
   (error) => {
     console.log(error);
-});
+  }
+);
 //interceptors拦截器
 axios.interceptors.response.use(
   (success) => {

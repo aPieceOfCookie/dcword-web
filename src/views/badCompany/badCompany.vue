@@ -1,14 +1,9 @@
 <template>
-  <el-table>
-  </el-table>
+  <el-table> </el-table>
 </template>
 
 <script>
-export default {
-
-}
+export default {};
 </script>
 
-<style>
-
-</style>
+<style></style>

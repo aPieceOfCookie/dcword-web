@@ -2,7 +2,7 @@
 
 /**
  * 检测数据是否为空
- * @param {*} item 
+ * @param {*} item
  * @returns boolean
  */
 export function valueIsNull1(item) {
@@ -15,7 +15,7 @@ export function valueIsNull1(item) {
 
 /**
  * 检测数据是否为空
- * @param {*} item 
+ * @param {*} item
  * @returns 自己或者""
  */
 export function valueIsNull2(item) {
